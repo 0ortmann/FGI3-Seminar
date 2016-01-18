@@ -16,7 +16,7 @@ Gliederungsentwurf:
 * LTL zu alternierenden Büchi Automaten                     (Felix)
   * Vorstellung + Erklärung des Beweises von Vardi
   * kein Exp-Blowup, Vorteile vorstellen
-* LTL zu Büchi Automaten
+* LTL zu Büchi Automaten                                    (Jennifer)
   * Überführung von alternierenden Büchi zu "normalen" Büchi Automaten 
   * Daraus resultierend LTL mit "normalen" Büchi Automaten
 * Ausblick Modelchecking                                    
