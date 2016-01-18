@@ -10,6 +10,7 @@ Um dies sowie die Bildungsregeln zu verdeutlichen ist im Folgenden die Syntax vo
 \label{ltl:syntax_basics}
     \phi := \top\ |\ \bot\ |\ p\ |\ (\lnot\phi)\ |\ (\phi \land \phi)\ |\ (\phi \lor \phi)\ |\ (X\phi)\ |\ (\phi U\phi)
 \end{equation}
+
 Vergleiche \cite{huth+04} (wobei wir eine reduzierte Form der LTL Symbole verwenden, ohne direkte Definition von $F$, $G$ und $R$); "`Finally"', "`Globally"' und "`Release"' lassen sich mit den anderen Symbolen wie folgt bilden:
 \begin{equation}
 \label{ltl:syntax_details}
@@ -19,6 +20,7 @@ Vergleiche \cite{huth+04} (wobei wir eine reduzierte Form der LTL Symbole verwen
     \phi R\psi &:= \lnot(\lnot\phi U\lnot\psi)\\
 \end{split}
 \end{equation}
+
 Ferner verwenden wir im Folgenden eine Klammern-sparende Notation, orientiert an der Bindungsstärke der jeweiligen Konnektoren, analog zu \cite{huth+04}. Unäre Operatoren ($\lnot X F G$) binden am stärksten, gefolgt von den binären temporalen Konnektoren und zuletzt den binären booleschen Konnektoren.
 
 
@@ -36,6 +38,7 @@ In \cite{vardi+96} wird ein ähnlicher Ansatz gewählt: Die Menge aller atomaren
     \pi, i &\models \phi U\psi\ gdw.\ \exists j \geq i: \pi, j \models \psi \land \forall k, i\leq k<j: \pi, k \models \phi
 \end{split}
 \end{equation*}
+
 Dies umfasst die minimale Menge an Semantischen Definitionen nach \cite{vardi+96}. Es wurde gezeigt, dass die Formelmenge \ref{ltl:syntax_details} durch Kombination der Basis LTL Formeln aus \ref{ltl:syntax_basics} herleitbar ist. Im Folgenden wollen wir auch für diese Konnektoren die semantische Definition angeben, angelehnt an die Idee von Vardi, dass $\pi$ eine Abbildung ist:
 
 \begin{equation*}
