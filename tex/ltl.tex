@@ -1,23 +1,37 @@
 \section{LTL}
 
-LTL ist eine Kurzschreibweise für "`Linear-Time Temporal Logic"' oder zu deutsch "`Lineare Temporale Logik"'. Interessant an LTL sind die Eigenschaften, die diese Logik mit sich bringt. Mit den LTL spezifischen Konnektoren lassen sich Aussagen über die Zukunft treffen, wobei Zeit als Abfolge von Zuständen betrachtet werden kann \cite{huth+04}.
+LTL ist eine Kurzschreibweise für "`Linear-Time Temporal Logic"' oder zu deutsch "`Lineare Temporale Logik"'. Interessant an LTL sind die Eigenschaften, die diese Logik mit sich bringt. Mit den LTL spezifischen Konnektoren lassen sich Aussagen über die Zukunft treffen, wobei Zeit als Abfolge von Zuständen betrachtet werden kann \cite{huth+04}. Zunächst wird die Syntax von LTL kurz vorgestellt. Der Begriff einer "`Rechnung"' eines Programms wird erläutert und anhand dessen die Semantik einer LTL Formel erklärt.
+
+\subsection{Syntax}
 
 LTL-Formeln setzen sich zusammen aus atomaren Symbolen -- wie sie auch in der Aussagenlogik bekannt sind -- den booleschen Konnektoren ($\lnot \land \lor$), sowie einer Menge an temporalen Konnektoren (\textit{X U}) \cite{huth+04,vardi+96}. Dabei ist \textit{X} ein unärer und \textit{U} ein binärer Konnektor. Mit dieser minimalen Menge an Konnektoren lassen sich alle weiteren LTL Formeln bilden \cite{vardi+96}.
 Um dies sowie die Bildungsregeln zu verdeutlichen ist im Folgenden die Syntax von LTL in Backus Naur Form dargestellt, wobei $p$ ein aussagenlogisches Atom und $\phi$ eine LTL Formel ist:
 \[
     \phi := \top\ |\ \bot\ |\ p\ |\ (\lnot\phi)\ |\ (\phi \land \phi)\ |\ (\phi \lor \phi)\ |\ (X\phi)\ |\ (\phi U\phi)
 \]
-Vergleiche \cite{huth+04} (wobei wir eine reduzierte Form der LTL Symbole verwenden, ohne direkte Definition von $F$, $G$, $R$ und $W$); "`Future"', "`Globally"' "`Release"' und "`Weak-Until"' lassen sich mit den anderen Symbolen wie folgt bilden:
-\[
-    F\phi := \top U\phi
-\]
-\[
-    G\phi := \lnot F\lnot\phi
-\]
-\[
-    \phi R\psi := \lnot(\lnot\phi U\lnot\psi)
-\]
-\[
-    \phi W\psi := (\phi U\psi) \lor G\phi
-\]
+Vergleiche \cite{huth+04} (wobei wir eine reduzierte Form der LTL Symbole verwenden, ohne direkte Definition von $F$, $G$, $R$ und $W$); "`Finally"', "`Globally"' "`Release"' und "`Weak-Until"' lassen sich mit den anderen Symbolen wie folgt bilden:
+\begin{equation*}
+\begin{split}
+    F\phi &:= \top U\phi\\
+    G\phi &:= \lnot F\lnot\phi\\
+    \phi R\psi &:= \lnot(\lnot\phi U\lnot\psi)\\
+    \phi W\psi &:= (\phi U\psi) \lor G\phi
+\end{split}
+\end{equation*}
 Ferner verwenden wir im Folgenden eine Klammern-sparende Notation, orientiert an der Bindungsstärke der jeweiligen Konnektoren, analog zu \cite{huth+04}. Unäre Operatoren ($\lnot X F G$) binden am stärksten, gefolgt von den binären temporalen Konnektoren und zuletzt den binären booleschen Konnektoren.
+
+
+\subsection{Semantik}
+
+Um Programme mithilfe von LTL Formeln verifizieren zu können, muss ein Model des zu verifizierenden Programms erstellt werden. Ein gängiger Ansatz ist die Modellierung als beschriftetes Transitionssystem\cite{huth+04}. Die LTL Formel würde dann entlang der Pfade des Transitionssystems interpretiert werden. 
+
+In \cite{vardi+96} wird ein ähnlicher Ansatz gewählt: Die Menge aller atomaren Aussagensymbole wird definiert als $Prop$. Der Begriff einer "`Berechnung"' wird definiert als Funktion, die zu jedem Zeitpunkt $i \in \mathbb{N}$ den Elementen von $Prop$ Wahrheitswerte zuweist. Auf diese Weise lässt sich die Funktion der "`Berechnung"' $\pi$ darstellen als $\pi : \mathbb{N} \rightarrow 2^{Prop}$. Nach \cite{vardi+96} folgt die semantische Definition von LTL: 
+\begin{equation*}
+\begin{split}
+    \pi, i &\models p\ gdw. p \in Prop\\
+    \pi, i &\models \phi \land \psi\ gdw. \pi, i \models \phi\ und \pi, i \models \psi\\
+    \pi, i &\models \lnot\phi\ gdw. \pi, i \not\models \phi\\
+    \pi, i &\models X\phi\ gdw. \pi, i+1 \models \phi\\
+    \pi, i &\models \phi U\psi\ gdw. {\exists j \geq i: \pi, j \models \psi \land \forall k, i\leq k<j: \pi, k \models \phi}
+\end{split}
+\end{equation*}
