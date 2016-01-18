@@ -11,7 +11,7 @@ Um dies sowie die Bildungsregeln zu verdeutlichen ist im Folgenden die Syntax vo
     \phi := \top\ |\ \bot\ |\ p\ |\ (\lnot\phi)\ |\ (\phi \land \phi)\ |\ (\phi \lor \phi)\ |\ (X\phi)\ |\ (\phi U\phi)
 \end{equation}
 
-Vergleiche \cite{huth+04} (wobei wir eine reduzierte Form der LTL Symbole verwenden, ohne direkte Definition von $F$, $G$ und $R$); "`Finally"', "`Globally"' und "`Release"' lassen sich mit den anderen Symbolen wie folgt bilden:
+Vergleiche \cite{huth+04} (wobei wir eine reduzierte Form der LTL Symbole verwenden, ohne direkte Definition von $F$, $G$ und $R$); "`Finally"', "`Globally"' und "`Release"' definieren wir unter Zuhilfenahme der anderen Operatoren und Konnektoren wie folgt:
 \begin{equation}
 \label{ltl:syntax_details}
 \begin{split}
@@ -39,7 +39,7 @@ In \cite{vardi+96} wird ein ähnlicher Ansatz gewählt: Die Menge aller atomaren
 \end{split}
 \end{equation*}
 
-Dies umfasst die minimale Menge an Semantischen Definitionen nach \cite{vardi+96}. Es wurde gezeigt, dass die Formelmenge \ref{ltl:syntax_details} durch Kombination der Basis LTL Formeln aus \ref{ltl:syntax_basics} herleitbar ist. Im Folgenden wollen wir auch für diese Konnektoren die semantische Definition angeben, angelehnt an die Idee von Vardi, dass $\pi$ eine Abbildung ist:
+Dies umfasst die minimale Menge an Semantischen Definitionen nach \cite{vardi+96}. Die Formelmenge \ref{ltl:syntax_details} wurde durch Kombination der Basis LTL Formeln aus \ref{ltl:syntax_basics} definiert. Im Folgenden ist auch für die Formeln aus \ref{ltl:syntax_details} die semantische Bedeutung angegeben, analog zu den obigen Definition unter Verwendung von $\pi$ nach \cite{vardi+96}:
 
 \begin{equation*}
 \begin{split}
@@ -52,5 +52,5 @@ Weiterhin wird Erfüllbarkeit definiert wie folgt:
 \[
     \pi \models \phi\ gdw.\ \pi, 0 \models \phi
 \]
-Wir sagen dann "`$\pi$ erfüllt $\phi$"'.
+Wir sagen dann "`$\pi$ erfüllt $\phi$"' oder auch "`$\pi$ modelliert $\phi$"' \cite{vardi+96}.
 
