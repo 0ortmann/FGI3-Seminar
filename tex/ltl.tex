@@ -1,11 +1,11 @@
 \section{LTL}
 
-LTL ist eine Kurzschreibweise für "`Linear-Time Temporal Logic"' oder zu deutsch "`Lineare Temporale Logik"'. Interessant an LTL sind die Eigenschaften, die diese Logik mit sich bringt. Mit den LTL spezifischen Konnektoren lassen sich Aussagen über die Zukunft treffen, wobei Zeit als Abfolge von Zuständen betrachtet werden kann \cite{huth+04}. Zunächst wird die Syntax von LTL kurz vorgestellt. Der Begriff einer "`Rechnung"' eines Programms wird erläutert und anhand dessen die Semantik einer LTL Formel erklärt.
+LTL ist eine Kurzschreibweise für "`Linear-Time Temporal Logic"' oder zu deutsch "`Lineare Temporale Logik"'. Interessant an LTL sind die Eigenschaften, die diese Logik mit sich bringt. Mit den LTL spezifischen Konnektoren lassen sich Aussagen über die Zukunft treffen, wobei Zeit als Abfolge von Zuständen betrachtet werden kann \cite{huth+04}. Im Folgenden wird die Syntax von LTL kurz vorgestellt. Der Begriff einer "`Rechnung"' eines Programms wird erläutert und anhand dessen die Semantik einer LTL Formel erklärt.
 
 \subsection{Syntax}
 
 LTL-Formeln setzen sich zusammen aus atomaren Symbolen -- wie sie auch in der Aussagenlogik bekannt sind -- den booleschen Konnektoren ($\lnot \land \lor$), sowie einer Menge an temporalen Konnektoren (\textit{X U}) \cite{huth+04,vardi+96}. Dabei ist \textit{X} ein unärer und \textit{U} ein binärer Konnektor. Mit dieser minimalen Menge an Konnektoren lassen sich alle weiteren LTL Formeln bilden \cite{vardi+96}.
-Um dies sowie die Bildungsregeln zu verdeutlichen ist im Folgenden die Syntax von LTL in Backus Naur Form dargestellt, wobei $p$ ein aussagenlogisches Atom und $\phi$ eine LTL Formel ist:
+Um dies sowie die Bildungsregeln zu verdeutlichen ist nachfolgend die Syntax von LTL in Backus Naur Form dargestellt, wobei $p$ ein aussagenlogisches Atom und $\phi$ eine LTL Formel ist:
 \begin{equation}
 \label{ltl:syntax_basics}
     \phi := \top\ |\ \bot\ |\ p\ |\ (\lnot\phi)\ |\ (\phi \land \phi)\ |\ (\phi \lor \phi)\ |\ (X\phi)\ |\ (\phi U\phi)
