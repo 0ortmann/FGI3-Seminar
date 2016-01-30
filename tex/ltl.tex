@@ -28,7 +28,9 @@ Ferner verwenden wir im Folgenden eine Klammern-sparende Notation, orientiert an
 
 Um Programme mithilfe von LTL Formeln verifizieren zu können, muss ein Model des zu verifizierenden Programms erstellt werden. Ein gängiger Ansatz ist die Modellierung als beschriftetes Transitionssystem\cite{huth+04}. Die LTL Formel würde dann entlang der Pfade des Transitionssystems interpretiert werden. 
 
-In \cite{vardi+96} wird ein ähnlicher Ansatz gewählt: Die Menge aller atomaren Aussagensymbole wird definiert als $Prop$. Der Begriff einer "`Berechnung"' wird definiert als Funktion, die zu jedem Zeitpunkt $i \in \mathbb{N}$ den Elementen von $Prop$ Wahrheitswerte zuweist. Auf diese Weise lässt sich die Funktion der "`Berechnung"' $\pi$ darstellen als $\pi : \mathbb{N} \rightarrow 2^{Prop}$. Es folgt die semantische Definition von LTL: 
+In \cite{vardi+96} wird ein ähnlicher Ansatz gewählt: Die Menge aller atomaren Aussagensymbole wird definiert als $Prop$. Der Begriff einer "`Berechnung"' wird definiert als Funktion, die zu jedem Zeitpunkt $i \in \mathbb{N}$ den Elementen von $Prop$ Wahrheitswerte zuweist. Auf diese Weise lässt sich die Funktion der "`Berechnung"' $\pi$ darstellen als $\pi : \mathbb{N} \rightarrow 2^{Prop}$. 
+
+Mit Hilfe der obigen syntaktischen von LTL und der einer "`Berechnung"' interpretieren wir LTL Formeln nun nicht über die Pfade eines Transitionssystems sondern über einer Berechnung. Es folgt die semantische Definition von LTL: 
 \begin{equation*}
 \begin{split}
     \pi, i &\models p\ gdw.\ p \in Prop\\
@@ -39,7 +41,7 @@ In \cite{vardi+96} wird ein ähnlicher Ansatz gewählt: Die Menge aller atomaren
 \end{split}
 \end{equation*}
 
-Dies umfasst die minimale Menge an Semantischen Definitionen nach \cite{vardi+96}. Die Formelmenge \ref{ltl:syntax_details} wurde durch Kombination der Basis LTL Formeln aus \ref{ltl:syntax_basics} definiert. Im Folgenden ist auch für die Formeln aus \ref{ltl:syntax_details} die semantische Bedeutung angegeben, analog zu den obigen Definition unter Verwendung von $\pi$ nach \cite{vardi+96}:
+Dies umfasst die minimale Menge an semantischen Definitionen nach \cite{vardi+96}. Die Formelmenge \ref{ltl:syntax_details} wurde durch Kombination der Basis LTL Formeln aus \ref{ltl:syntax_basics} definiert. Im Folgenden ist auch für die Formeln aus \ref{ltl:syntax_details} die semantische Bedeutung angegeben, analog zu den obigen Definition unter Verwendung von $\pi$ nach \cite{vardi+96}:
 
 \begin{equation*}
 \begin{split}
