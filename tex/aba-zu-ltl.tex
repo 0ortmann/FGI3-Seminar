@@ -1,3 +1,39 @@
 \section{LTL zu alternierenden Büchi Automaten}
 
-Teil von Felix, Mapping von alternierenden Büchi Automaten zu LTL
+Der folgende Abschnitt stellt ein Übersetzungsverfahren von LTL Formeln zu alternierenden Büchi Automaten vor. Darauf aufbauend kann die Erfüllbarkeit einer LTL Formel mit Hilfe des äquivalenten alterniereden Büchi Automaten festgestellt werden. Das Verfahren und der Beweis nach \cite{vardi+96} werden diskutiert. Vorteile dieses Verfahrens werden kurz vorgestellt. 
+
+
+\subsection{Verfahren}
+
+Im vorangegangenen Abschnitt wurde die Semantik einer LTL Formel anhand einer Berechnung definiert. Berechnungen können auch als unendliche Worte über dem Alphabet $2^{Prop}$ dargestellt werden\cite{vardi+96}. Aufgrund dieser Verbindung von LTL Formeln und unendlichen Wörtern stellt Vardi in \cite{vardi+96} folgendes Theorem auf:
+\begin{theorem}
+    Gegeben eine LTL Formel $\phi$ ist es möglich, einen alternierenden Büchi Automaten $A_\phi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\phi|)$, sodass gilt: $L_\omega(A_\phi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\phi$ erfüllen.
+\end{theorem}
+Für die gleich folgende Definition des 5-Tupels des alternierenden Büchi Automaten benötigen wir eine leicht veränderte Definition für Dualismus; analog zu \cite{vardi+96} bilden wir $\overline{\phi}$ durch Vertauschen von $\land$ und $\lor$, das Vertauschen von $\top$ und $\bot$ und durch das Negieren von Teilformen in $S$:
+\begin{equation}
+\label{aba-zu-ltl:dualismus}
+\begin{split}
+    \overline{\phi} &= \lnot\phi, \phi \in S\\
+    \overline{\top} &= \bot\\
+    \overline{\bot} &= \top\\
+    \overline{(\alpha \land \beta)} &= (\overline{\alpha} \lor \overline{\beta})\\
+    \overline{(\alpha \lor \beta)} &= (\overline{\alpha} \land \overline{\beta})
+\end{split}
+\end{equation}
+Mit dieser Definition von Dualismus können wir nun die Konstruktionsregeln für den alternierenden Büchi Automaten $A_\phi$ nach \cite{vardi+96} angeben: Die Gesamtzustandsmenge $S$ ist die Menge aller Teilformeln von $\phi$ und deren Negationen. Dabei vereinfachen wir doppelte Negation, sodass $\lnot\lnot\psi = \psi$. Der Startzustand $s^0$ ist $\phi$. 
+Die Menge der Endzustände $F$ wird definiert als all jene Teilformeln aus $S$, die in der Form $\lnot(\sigma U\psi)$ sind. Abschließend wird die Übergangsfunktion $\rho$ wie folgt definiert:
+\begin{equation}
+\label{aba-zu-ltl:transitionsfunktion}
+\begin{split}
+    \rho(p, a) &= \top, falls \ p \in a,\\
+    \rho(p, a) &= \bot, falls \ p \not\in a,\\
+    \rho(\sigma \land \psi, a) &= \rho(\sigma, a) \land \rho(\psi, a),\\
+    \rho(\sigma \lor \psi, a) &= \rho(\sigma, a) \lor \rho(\psi, a),\\
+    \rho(\lnot\psi, a) &= \overline{\rho(\psi, a)},\\
+    \rho(X\psi, a) &= \psi,\\
+    \rho(\sigma U\psi, a) &= \rho(\psi, a) \lor (\rho(\sigma, a) \land \sigma U\psi)
+\end{split}
+\end{equation}
+
+
+\subsection{Beweis}
