@@ -4,7 +4,7 @@ Der folgende Abschnitt stellt ein Übersetzungsverfahren von LTL Formeln zu alte
 
 
 \subsection{Verfahren}
-
+\label{subsection:verfahren}
 Im vorangegangenen Abschnitt wurde die Semantik einer LTL Formel anhand einer Berechnung definiert. Berechnungen können auch als unendliche Worte über dem Alphabet $2^{Prop}$ dargestellt werden\cite{vardi+96}. Aufgrund dieser Verbindung gilt:
 \begin{satz}\cite{vardi+96}
     Gegeben eine LTL Formel $\phi$ ist es möglich, einen alternierenden Büchi Automaten $A_\phi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\phi|)$, sodass gilt: $L_\omega(A_\phi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\phi$ erfüllen.
@@ -37,3 +37,23 @@ Die Menge der Endzustände $F$ wird definiert als all jene Teilformeln aus $S$, 
 
 
 \subsection{Beweis}
+
+Wie in Abschnitt \ref{subsec:aba} definiert, ist ein Lauf eines alternierenden Büchi Automaten als unendlicher, beschrifteter Baum zu betrachten. Die möglichen Beschriftungen der Knoten des Baumes sind alle Elemente der Zustandsmenge des Automaten. Sei nun der alternierende Büchi Automat $A_\phi$ nach dem Verfahren aus \ref{subsection:verfahren} konstruiert. Die möglichen Beschriftungen des Lauf-Baumes sind genau all jene Teilformeln der LTL Formel $\phi$ und deren Negationen.
+
+Sei nun $l$ ein Lauf von $A_\phi$. Der Laufbaum $l$ kann nur zwei Arten von unendlichen Ästen haben -- entweder ist ein unendlicher Ast beschriftet mit $\sigma U\psi$ oder mit $\lnot(\sigma U\psi)$ \cite{vardi+96}. Diese beiden möglichen Beschriftungen bringen unterschiedliche Eigenschaften. 
+
+Wenn ein unendlicher Ast ab einem bestimmten Punkt mit $\sigma U\psi$ beschriftet ist, kann nicht Bestimmtheit festgestellt werden, ob die Formel zu diesem Zeitpunkt gültig ist; durch die Definition von $\sigma U\psi$ kann nicht mit Bestimmtheit vorhergesagt werden, dass $\psi$ überhaupt eintritt. Allerdings kann für einen unendlichen Ast, der ab einem bestimmten Punkt mit $\lnot(\sigma U\psi)$ beschriftetet ist, mit Bestimmtheit festgestellt werden, dass $\sigma U\psi$ tatsächlich nicht gilt -- über die Definition von $\rho$:
+\begin{equation}
+\begin{split}
+    \rho(\lnot(\sigma U\psi), a) &= \overline{\rho(\psi, a) \lor (\rho(\sigma, a) \land \sigma U\psi)}\\
+    &= \overline{\rho(\psi, a)} \land \overline{(\rho(\sigma, a) \land \sigma U\psi)}\\
+    &= \overline{\rho(\psi, a)} \land (\overline{\rho(\sigma, a)} \lor \overline{\sigma U\psi)}\\
+    &= \overline{\rho(\psi, a)} \land (\overline{\rho(\sigma, a)} \lor \lnot(\sigma U\psi))\\
+\end{split}
+\end{equation}
+Es wird also ab einem bestimmten Punkt $\lnot\psi$ gelten und somit $\lnot(\sigma U\psi)$ (vergleiche \cite{vardi+96}).
+
+In der Verfahrensbeschreibung in \ref{subsection:verfahren} wurde die Endzustandsmenge definiert als "`all jene Teilformeln aus $S$, die in der Form $\lnot(\sigma U\psi)$ sind"'. $\square$
+
+\subsection{Vorteile}
+Vorteile evtl besser in die nächste section, da laufzeit (kein exponential blowup) erst interessant, wenn alternierender büchi -> büchi gemacht wurde. sons ist der vergleich mit anderen verfahren witzlos (weil andere verfahren, die direkt ltl->büchi machen einen exponential blowup haben)\todo{besprechen}
