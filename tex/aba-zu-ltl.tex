@@ -5,10 +5,10 @@ Der folgende Abschnitt stellt ein Übersetzungsverfahren von LTL Formeln zu alte
 
 \subsection{Verfahren}
 
-Im vorangegangenen Abschnitt wurde die Semantik einer LTL Formel anhand einer Berechnung definiert. Berechnungen können auch als unendliche Worte über dem Alphabet $2^{Prop}$ dargestellt werden\cite{vardi+96}. Aufgrund dieser Verbindung von LTL Formeln und unendlichen Wörtern stellt Vardi in \cite{vardi+96} folgendes Theorem auf:
-\begin{theorem}
+Im vorangegangenen Abschnitt wurde die Semantik einer LTL Formel anhand einer Berechnung definiert. Berechnungen können auch als unendliche Worte über dem Alphabet $2^{Prop}$ dargestellt werden\cite{vardi+96}. Aufgrund dieser Verbindung gilt:
+\begin{satz}\cite{vardi+96}
     Gegeben eine LTL Formel $\phi$ ist es möglich, einen alternierenden Büchi Automaten $A_\phi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\phi|)$, sodass gilt: $L_\omega(A_\phi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\phi$ erfüllen.
-\end{theorem}
+\end{satz}
 Für die gleich folgende Definition des 5-Tupels des alternierenden Büchi Automaten benötigen wir eine leicht veränderte Definition für Dualismus; analog zu \cite{vardi+96} bilden wir $\overline{\phi}$ durch Vertauschen von $\land$ und $\lor$, das Vertauschen von $\top$ und $\bot$ und durch das Negieren von Teilformen in $S$:
 \begin{equation}
 \label{aba-zu-ltl:dualismus}
