@@ -3,29 +3,36 @@
 In diesem Abschnitt werden die Grundlagen für $\omega$-Automaten vorgestellt. Dabei werden zuerst Automaten allgemein definiert. Anschließend wird genauer auf Büchi-Automaten als Form der $\omega$-Automaten eingegangen. Zum Schluss werden alternierende Büchi-Automaten vorgestellt, die für das Mapping im vierten Abschnitt benötigt werden. 
 
 \subsection{Endliche Automaten}
-Ein Automat A ist ein Tupel ($\Sigma, S, S^0, \rho, F$). Dabei ist $\Sigma$ ein endliches nicht leeres Alphabet, $S$ eine endliche nicht leere Menge von Zuständen, $S^0\subseteq S$ eine nicht leere Menge von Startzuständen, $F\subseteq S$ eine Menge von Endzuständen und $\rho : S \times \Sigma \rightarrow 2^S$ ist eine Transitionsfunktion. Bei deterministischen Automaten ist $|S^0|=1$ und $|\rho(s,a)|\leq 1$ für alle $s\in S$ und $a \in \Sigma$.\todo{Zitate!}
+Ein Automat A ist ein Tupel ($\Sigma, S, S^0, \rho, F$). Dabei ist $\Sigma$ ein endliches nicht leeres Alphabet, $S$ eine endliche nicht leere Menge von Zuständen, $S^0\subseteq S$ eine nicht leere Menge von Startzuständen, $F\subseteq S$ eine Menge von Endzuständen und $\rho : S \times \Sigma \rightarrow 2^S$ ist eine Transitionsfunktion. Bei deterministischen Automaten ist $|S^0|=1$ und $|\rho(s,a)|\leq 1$ für alle $s\in S$ und $a \in \Sigma$ \cite{vardi+96}.
 
-Ein Lauf des Automaten A auf dem Wort $w=a_0,...,a_{n-1}\in \Sigma^\ast$ ist eine Sequenz von Zuständen $s_0,...,s_n$, sodass $s_0 \in S^0$ und $s_{i+1} \in \rho(s_i, a_i)$ für $0\leq i<n$ gilt. Der Automat A akzeptiert ein endliches Wort $w=a_0,...,a_{n-1}\in\Sigma^\ast$, wenn $s_n\in F$ gilt. Die Menge der endlichen Worte, die der Automat A akzeptiert, ist die Sprache $L(A)$ von A.
-\todo{Der ganze Absatz ist abgeschrieben.}
+Ein Lauf des Automaten A auf dem Wort $w=a_0,...,a_{n-1}\in \Sigma^\ast$ ist eine Sequenz von Zuständen $s_0,...,s_n$, sodass $s_0 \in S^0$ und $s_{i+1} \in \rho(s_i, a_i)$ für $0\leq i<n$ gilt (streng nach \cite{vardi+96}). Der Automat A akzeptiert ein endliches Wort $w=a_0,...,a_{n-1}\in\Sigma^\ast$, wenn $s_n\in F$ gilt. Die Menge der endlichen Worte, die der Automat A akzeptiert, ist die Sprache $L(A)$ von A \cite{vardi+96}. 
+%\todo{Der ganze Absatz ist abgeschrieben.}
 
 \subsection{Büchi-Automaten}
-Im Gegensatz zu endlichen Automaten akzeptieren $\omega$-Automaten unendliche Wörter $a_1,a_2,...\in \Sigma^{\omega}$. Eine Form der $\omega$-Automaten sind Büchi-Automaten. Diese sind ähnlich zu endlichen Automaten wie folgt definiert. Ein Büchiautomat A ist ein Tupel ($\Sigma, S, S^0, \rho, F$). Dabei ist $\Sigma$ ein endliches nicht leeres Alphabet, $S$ eine endliche nicht leere Menge von Zuständen, $S^0\subseteq S$ ein Startzustand, $F\subseteq S$ eine Menge von Endzuständen und $\rho : S \times \Sigma \rightarrow 2^S$ ist eine Transitionsfunktion.
+Im Gegensatz zu endlichen Automaten akzeptieren $\omega$-Automaten unendliche Wörter $a_1,a_2,...\in\Sigma^{\omega}$. Eine Form der $\omega$-Automaten sind Büchi-Automaten. Diese sind ähnlich zu endlichen Automaten wie folgt definiert. Ein Büchiautomat A ist ein Tupel ($\Sigma, S, S^0, \rho, F$). Dabei ist $\Sigma$ ein endliches nicht leeres Alphabet, $S$ eine endliche nicht leere Menge von Zuständen, $S^0\subseteq S$ ein Startzustand, $F\subseteq S$ eine Menge von Endzuständen und $\rho : S \times \Sigma \rightarrow 2^S$ ist eine Transitionsfunktion \cite{hofmann11,vardi+96}.
 
-Ein Lauf r des Automaten auf dem Wort $w=a_0,a_1,... \in \Sigma^{\omega}$ ist eine unendliche Folge von Zuständen $s_0,s_1,...$, wobei $s_0 \in S^0$ und $s_{i+1} \in \rho(s_i, a_i)$ für alle $i \geq 0$ gilt. Ein solcher Lauf r wird akzeptiert, wenn ein Endzustand in r unendlich oft vorkommt. Sei $lim(r)$ die Menge \{$s|s=s_i$ für unendlich viele i's\}, das heißt die Menge der Zustände, die unendlich oft in r auftauchen. Damit ist ein Lauf r akzeptierend, wenn $lim(r)\cap F \neq \emptyset$ gilt.
-\todo{Zitate!}
+Ein Lauf r des Automaten auf dem Wort $w=a_0,a_1,... \in \Sigma^{\omega}$ ist eine unendliche Folge von Zuständen $s_0,s_1,...$, wobei nach \cite{vardi+96} $s_0 \in S^0$ und $s_{i+1} \in \rho(s_i, a_i)$ für alle $i \geq 0$ gilt. Ein solcher Lauf r wird akzeptiert, wenn ein Endzustand in r unendlich oft vorkommt. Analog zu \cite{vardi+96} sei $lim(r)$ die Menge \{$s|s=s_i$ für unendlich viele i's\}, das heißt die Menge der Zustände, die unendlich oft in r auftauchen. Damit ist ein Lauf r akzeptierend, wenn $lim(r)\cap F \neq \emptyset$ gilt.
+%\todo{Zitate!}
 
 Für Büchi-Automaten gelten folgende Sätze bezüglich Vereinigung, Schnitt und Komplementbildung. 
 
-\begin{satz}\cite{choueka74}
+\begin{satz}\cite{choueka74, vardi+96}
+\label{Büchi_Vereinigung}
 Seien $A_1, A_2$ Büchi-Automaten. Dann existiert ein Büchi-Automat, der die Sprache $L_{\omega}(A_1\cup A_2)=L_{\omega}(a_1)\cup L_{\omega}(A_2)$ akzeptiert.
 \end{satz}
-\begin{satz}\cite{choueka74}
+\begin{satz}\cite{choueka74,vardi+96}
+\label{Büchi_Schnitt}
 Seien $A_1, A_2$ Büchi-Automaten. Dann existiert ein Büchi-Automat, der die Sprache $L_{\omega}(A)=L_{\omega}(A_1)\cup L_{\omega}(A_2)$ akzeptiert.
 \end{satz}
-\begin{satz}\cite{buechi62}
+Im Paper von Vardi \cite{vardi+96} wird ein Beweis für Satz \ref{Büchi_Schnitt} über die Konstruktion eines solchen Automaten gegeben.
+\begin{satz}\cite{buechi62,vardi+96}
+\label{Büchi_Komplement}
 Sei A ein Büchi-Automat über ein Alphabet $\Sigma$. Dann gibt es einen Büchi-Automaten $\overline{A}$, der die Sprache $L_\omega(\overline{A})=\Sigma^\omega - L_\omega(A)$ akzeptiert.
 \end{satz}
 
-
 \subsection{Alternierende Büchi-Automaten}
+
+Ein alternierender Büchi-Automat unterscheidet sich nur in der Definition der Transitionsfunktion von einem Büchi-Automaten. Er ist als ein Tupel A = $(\Sigma,S,s^0,\rho,F)$ definiert, wobei $\rho : S \times \Sigma \rightarrow \mathcal{B}^+(S)$ gilt \cite{vardi+96}. Dafür definieren wir analog zu \cite{vardi+96} $\mathcal{B}^+(X)$ als Menge der positiven boolschen Formeln über der Menge X, wobei auch die Formeln true und false erlaubt sind. \todo{Beispiel für $\mathcal{B}^+(X)$ einbauen?} Mit dieser Definition der Transitionsfunktion ist es möglich, die Eigenschaften von Existenzauswahl (existential choice) und die Eigenschaften von universeller Auswahl (universal choice) zu kombinieren (vgl. \cite{vardi+96}).
+
+Die universelle Auswahl führt dazu, dass ein Lauf eines alternierenden Automaten keine Sequenz, sondern ein Baum ist. Formal ist ein Lauf eines alternierenden Büchi-Automaten auf einem unendlichen Wort $w=a_0, a_1,...$ nach \cite{vardi+96} ein (unendlicher) S-beschrifteter Baum r, bei dem $r(\epsilon)=s^0$ gilt und für die folgenden Knoten gilt: wenn $|x|=i$, $r(x)=s$ und $\rho(s,a_i)=\theta$, dann hat $x$ $k$ Kinder $x_1,...,x_k$ für ein $k\leq|S|$ und ${r(x_1),...,r(x_k)}$ erfüllt $\theta$. Damit ein solcher Lauf $r$ von dem Automaten akzeptiert wird, muss jeder unendliche Zweig unendlich viele Markierungen aus der Endzustandsmenge beinhalten \cite{vardi+96}. Dabei müssen nicht alle Zweige unendlich sein, wenn es $|x|=i$, $r(x)=s$ und $\rho(s,a_1)$=true gibt, sodass x keine Kinder hat ()vgl.\cite{vardi+96}). Durch die Definition eines Laufes als Baum kann ein alternierender Büchi-Automat gleichzeitig in mehreren Zuständen sein. 
 
