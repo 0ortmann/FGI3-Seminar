@@ -1,3 +1,22 @@
-\section{LTL zu Büchi Automaten}
+\section{LTL zu Büchi-Automaten}
 
-Teil von Jennifer: Beziehung von alternierenden Büchi Automaten zu normalen Büchi Automaten. Daraus folgerbar auch LTL mit normalen Büchi Automaten.
+In diesem Abschnitt wird der Zusammenhang von alternierenden Büchi-Automaten und einfachen Büchi Automaten beschrieben. Daraus wird die Möglichkeit, LTL-Formeln auch mit einfachen Büch- Automaten auf Erfüllbarkeit zu testen, abgeleitet.
+
+\subsection{Alternierende Büchi-Automaten zu Büchi-Automaten}
+
+Es gilt folgender Satz für die Beziehung zwischen einem alternierenden Büchi-Automaten und einem nichtdeterministischen Büchi-Automaten:
+\begin{satz}\cite{vardi+96,miyano+84}
+\label{ABA>BA}
+Sei A ein alternierender Büchi-Automat. Dann gibt es einen nicht nichtdeterministischen Büchi-Automaten $A_n$ sodass $L_{\omega}(A_n)=L_{\omega}(A)$ gilt.
+\end{satz}
+\textbf{Beweis:}
+
+\subsection{LTL zu Büchi-Automaten}
+
+Unter der Anwendung von dem Satz \ref{ABA>BA} aus dem vorigen Abschnitt kann folgende Schlussfolgerung gezogen werden:
+
+\begin{korol}\cite{vardi+96,vardi+94}
+Gegeben eine LTL Formel $\varphi$ ist es möglich einen Büchi-Automaten $A_{\varphi}=(\Sigma,S, S^0,\rho,F)$ zu konstruieren, wobei $\Sigma=2^{Prop}$ und $|S|$ in $2^{O(|\varphi|)}$, sodass $L_{\omega}(A_n)$ genau die Menge der Berechnungen, die die Formel $\varphi$ erfüllen.
+\end{korol}
+
+%Teil von Jennifer: Beziehung von alternierenden Büchi Automaten zu normalen Büchi Automaten. Daraus folgerbar auch LTL mit normalen Büchi Automaten.
