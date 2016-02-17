@@ -1,0 +1,96 @@
+\begin{frame}{Endliche Automaten}
+\begin{block}{Definition Endlicher Automat}
+Ein endlicher Automat A ist ein Tupel ($\Sigma, S, S^0, \rho, F$) mit
+\begin{itemize}
+\item $\Sigma$ ist nicht leeres Alphabet,
+\item $S$ ist endliche nicht leere Menge von Zuständen,
+\item $S^0\subseteq S$ ist nicht leere Menge von Startzuständen,
+\item $F\subseteq S$ ist Menge von Endzuständen und
+\item $\rho : S \times \Sigma \rightarrow 2^S$ Transitionsfunktion.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Endlicher Automat}
+\begin{block}{Definition Endlicher Automat (Fortsetzung)}
+\begin{itemize}
+\item Ist $|S^0|=1$ und $|\rho(s,a)|\leq 1$ für alle $s\in S$ und $a\in \Sigma$, dann ist der Automat deterministisch.
+\item Ein Lauf $r$ auf dem Wort $w=a_0,...,a_{n-1}\in \Sigma^\ast$ ist eine Sequenz von Zuständen $s_0,...,s_n$, sodass $s_0\in S^0$ und $s_{i+1}\in \rho(s_i,a_i)$ für $0\leq i < n$ gilt.
+\item Ein Lauf $r$ ist akzeptierend, wenn $s_n\in F$ gilt.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Büchi-Automaten}
+\begin{block}{Definition Büchi-Automat}
+Ein Büchi-Automat A ist ein Tupel ($\Sigma, S, s^0, \rho, F$) mit
+\begin{itemize}
+\item $\Sigma$ ist nicht leeres Alphabet,
+\item $S$ ist endliche nicht leere Menge von Zuständen,
+\item $s^0$ ist ein Startzustand,
+\item $F\subseteq S$ ist Menge von Endzuständen und
+\item $\rho : S \times \Sigma \rightarrow 2^S$ Transitionsfunktion.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Büchi-Automaten}
+\begin{block}{Definition Büchi-Automat (Fortsetzung)}
+\begin{itemize}
+\item Ein Lauf $r$ auf dem Wort $w=a_0,a_1,...\in \Sigma^\omega$ ist eine unendliche Folge von Zuständen $s_0,s_1,...$, wobei $s_0\in S^0$ und $s_{i+1}\in \rho(s_i,a_i)$ für alle $i\geq0$ gilt.
+\item $lim(r)$ ist Menge \{$s|s=s_i$ für unendlich viele i's\}
+\item Ein Lauf $r$ ist akzeptierend, wenn $lim(r)\cap F \neq \emptyset$ gilt.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Büchi-Automaten} 
+\begin{block}{Satz (Vereinigung) \cite{choueka74, vardi+96}}
+Seien $A_1, A_2$ Büchi-Automaten. Dann existiert ein Büchi-Automat, der die Sprache $L_{\omega}(A_1\cup A_2)=L_{\omega}(a_1)\cup L_{\omega}(A_2)$ akzeptiert.
+\end{block}
+\begin{block}{Satz (Schnitt) \cite{choueka74,vardi+96}}
+Seien $A_1, A_2$ Büchi-Automaten. Dann existiert ein Büchi-Automat, der die Sprache $L_{\omega}(A)=L_{\omega}(A_1)\cap L_{\omega}(A_2)$ akzeptiert.
+\end{block}
+\end{frame}
+
+\begin{frame}{Büchi-Automaten} 
+\begin{block}{Satz (Komplement) \cite{buechi62,vardi+96}}
+Sei A ein Büchi-Automat über ein Alphabet $\Sigma$. Dann gibt es einen Büchi-Automaten $\overline{A}$, der die Sprache $L_\omega(\overline{A})=\Sigma^\omega - L_\omega(A)$ akzeptiert.
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten}
+\begin{block}{Die Menge $\mathcal{B}^+(X)$}
+\begin{itemize}
+\item $\mathcal{B}^+(X)$ ist die Menge der positiven boolschen Formeln über die Menge X.
+\item beinhaltet auch die Formeln $\top$ (true) und $\bot$ (false).
+\item $Y \subseteq X$ erfüllt eine Formel $\theta \in \mathcal{B}^+(X)$, wenn die Wahrheitsbelegung, die $true$ für die Elemente von $Y$ und $false$ für die Elemente von $X-Y$ zuordnet, $\theta$ erfüllt.
+\item Beispiel \cite{vardi+96}: $Y=\{s_1,s_3\}$ erfüllt die Formel $\theta = (s_1 \vee s_2)\wedge (s_3\vee s_4)$\\
+
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten}
+\begin{block}{Definition Alternierender Büchi-Automat}
+Ein Büchi-Automat A ist ein Tupel ($\Sigma, S, s^0, \rho, F$) mit
+\begin{itemize}
+\item $\Sigma$ ist nicht leeres Alphabet,
+\item $S$ ist endliche nicht leere Menge von Zuständen,
+\item $s^0$ ist ein Startzustand,
+\item $F\subseteq S$ ist Menge von Endzuständen und
+\item \textbf{$\rho : S \times \Sigma \rightarrow \mathcal{B}^+(S)$} Transitionsfunktion.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten}
+\begin{block}{Definition Alternierender Büchi-Automat (Fortsetzung)}
+Ein Lauf r auf einem unendlichen Wort $w=a_0,a_1,...$ ist ein (unendlicher) S-beschrifteter Baum r mit
+\begin{itemize}
+\item $r(\epsilon)=s^0$,
+\item und für die folgenden Knoten gilt: wenn $|x|=i, r(x)=s$ und $\rho(s,a_i)=\theta$, dann hat $x$ $k$ Kinder $x_1,...,x_k$ für ein $k \leq |S|$ und $r(x_1),...,r(x_k)$ erfüllt $\theta$.
+\end{itemize}
+Ein Lauf r wird akzeptiert, wenn jeder unendliche Zweig unendlich viele Markierungen aus der Endzustandsmenge enthält.
+\end{block}
+\end{frame}
