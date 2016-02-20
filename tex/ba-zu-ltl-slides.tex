@@ -1,0 +1,75 @@
+\begin{frame}{LTL auf Büchi-Automaten}
+\begin{block}{Schritte:}
+\begin{itemize}
+\item Überführung von alternierenden Büchi-Automaten zu normalen nichtdeterministischen Büchi-Automaten
+\item Schlussfolgerung für LTL mit Büchi-Automaten
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
+\begin{block}{Satz}
+Sei A ein alternierender Büchi-Automat. Dann gibt es einen nicht nichtdeterministischen Büchi-Automaten $A_n$ sodass $L_{\omega}(A_n)=L_{\omega}(A)$ gilt.
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
+\begin{block}{Beweis}
+\begin{itemize}
+\item $A_n$ nimmt Lauf von A an und merkt sich gesamte Ebene eines Laufes
+\item einzelnen Ebenen eines Laufes sind Bäume
+\item $A_n$ merkt sich das Auftreten von akzeptierenden Zuständen
+\item Aufteilung der Ebene eines Laufs in zwei Mengen
+\begin{itemize}
+\item Zweige, die vor kurzem einen Endzustand erreicht haben
+\item Zweige, die vor kurzem keinen Endzustand erreicht haben
+\end{itemize}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
+\begin{block}{Beweis (Konstruktion)}
+Gegeben $A=(\Sigma,S, s^0, \rho, F)$. Dann $A_n=(\Sigma,S_n,S^0,\rho_n,F_n)$ mit
+\begin{itemize}
+\item $S_n=2^S\times 2^S$
+\item $F_n=\emptyset\times 2^S$
+\item und für die Transitionsfunktion gilt: $\rightarrow$ nächste Folie
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
+\begin{block}{Beweis (Transitionsfunktion Teil 1)}
+Für die Transitionsfunktion gilt:
+\begin{itemize}
+\item für $U\neq\emptyset$:
+\begin{align*}
+\rho_n((U,V),a)=\{(U',V')| \text{es gibt} X,Y\subseteq S\text{ sodass}&\\
+X \text{ erfüllt} \bigwedge_{t \in U}\rho(t,a),\\
+Y \text{ erfüllt} \bigwedge_{t_\in V}\rho(t,a),\\
+U'=X-F, \text{ und } V'=Y\cup(X\cap F)\},
+\end{align*}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
+\begin{block}{Beweis (Transitionsfunktion Teil 2)}
+Für die Transitionsfunktion gilt:
+\begin{itemize}
+\item für $U=\emptyset$:
+\begin{align*}
+\rho_n((\emptyset,V),a)=\{(U',V')|\text{ es gibt } X,Y\subseteq S \text{ sodass }\\
+Y \text{ erfüllt } \bigwedge_{t_\in V}\rho(t,a),\\
+U'=Y-F\text{, und } V'=Y\cap F\}.
+\end{align*}
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{LTL und Büchi-Automaten}
+\begin{block}{Korollar \cite{vardi+96,vardi+94}}
+Gegeben eine LTL Formel $\varphi$ ist es möglich einen Büchi-Automaten $A_{\varphi}=(\Sigma,S, S^0,\rho,F)$ zu konstruieren, wobei $\Sigma=2^{Prop}$ und $|S|$ in $2^{O(|\varphi|)}$, sodass $L_{\omega}(A_n)$ genau die Menge der Berechnungen, die die Formel $\varphi$ erfüllen.
+\end{block}
+\end{frame}

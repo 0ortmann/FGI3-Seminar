@@ -8,6 +8,8 @@ Ein Automat A ist ein Tupel ($\Sigma, S, S^0, \rho, F$). Dabei ist $\Sigma$ ein 
 Ein Lauf des Automaten A auf dem Wort $w=a_0,...,a_{n-1}\in \Sigma^\ast$ ist eine Sequenz von Zuständen $s_0,...,s_n$, sodass $s_0 \in S^0$ und $s_{i+1} \in \rho(s_i, a_i)$ für $0\leq i<n$ gilt (streng nach \cite{vardi+96}). Der Automat A akzeptiert ein endliches Wort $w=a_0,...,a_{n-1}\in\Sigma^\ast$, wenn $s_n\in F$ gilt. Die Menge der endlichen Worte, die der Automat A akzeptiert, ist die Sprache $L(A)$ von A \cite{vardi+96}. 
 %\todo{Der ganze Absatz ist abgeschrieben.}
 
+\subsection{Alternierende endliche Automaten}
+
 \subsection{Büchi-Automaten}
 Im Gegensatz zu endlichen Automaten akzeptieren $\omega$-Automaten unendliche Wörter $a_1,a_2,...\in\Sigma^{\omega}$. Eine Form der $\omega$-Automaten sind Büchi-Automaten. Diese sind ähnlich zu endlichen Automaten wie folgt definiert. Ein Büchiautomat A ist ein Tupel ($\Sigma, S, s^0, \rho, F$). Dabei ist $\Sigma$ ein endliches nicht leeres Alphabet, $S$ eine endliche nicht leere Menge von Zuständen, $s^0\in S$ ein Startzustand, $F\subseteq S$ eine Menge von Endzuständen und $\rho : S \times \Sigma \rightarrow 2^S$ ist eine Transitionsfunktion \cite{hofmann11,vardi+96}.
 

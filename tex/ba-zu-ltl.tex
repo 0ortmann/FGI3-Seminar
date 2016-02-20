@@ -14,7 +14,7 @@ Sei A ein alternierender Büchi-Automat. Dann gibt es einen nicht nichtdetermini
 Die genaue Konstruktion, wie sie in \cite{vardi+96} genutzt wird, ist im Folgenden beschrieben. Gegeben sei der Automat $A=(\Sigma,S, s^0, \rho, F)$. Dann sieht der Automat $A_n$, der die gleiche Sprache akzeptiert, wie folgt aus: $A_n=(\Sigma,S_n,S^0,\rho_n,F_n)$, wobei $S_n=2^S\times2^S$, $F_n={\emptyset}\times2^S$ und für die Transitionsfunktion gilt \begin{itemize}
 \item für $U\neq\emptyset$:
 \begin{align*}
-\rho_n((U,V),a)=\{(U',V')| \text{es gibt} X,Y\subseteq S\text{ sodass}&\\
+\rho_n((U,V),a)=\{(U',V')| \text{ es gibt } X,Y\subseteq S\text{ sodass}&\\
 X \text{ erfüllt} \bigwedge_{t \in U}\rho(t,a),\\
 Y \text{ erfüllt} \bigwedge_{t_\in V}\rho(t,a),\\
 U'=X-F, \text{ und } V'=Y\cup(X\cap F)\},
@@ -33,10 +33,13 @@ $\square$
 
 \subsection{LTL zu Büchi-Automaten}
 
-Unter der Anwendung von dem Satz \ref{ABA>BA} aus dem vorigen Abschnitt kann folgende Schlussfolgerung gezogen werden:
+Unter der Anwendung von Satz \ref{ABA>BA} aus dem vorigen Abschnitt kann folgende Schlussfolgerung gezogen werden:
 
 \begin{korol}\cite{vardi+96,vardi+94}
 Gegeben eine LTL Formel $\varphi$ ist es möglich einen Büchi-Automaten $A_{\varphi}=(\Sigma,S, S^0,\rho,F)$ zu konstruieren, wobei $\Sigma=2^{Prop}$ und $|S|$ in $2^{O(|\varphi|)}$, sodass $L_{\omega}(A_n)$ genau die Menge der Berechnungen, die die Formel $\varphi$ erfüllen.
 \end{korol}
+
+Der Beweis dieser Schlussfolgerung teilt sich in den Beweis der Logik und der Kombinatorik. Die Logik wurde in Satz \ref{ABA>BA} behandelt und die Kombinatorik ist durch Satz \ref{LTL->ABA} erläutert worden.
+
 
 %Teil von Jennifer: Beziehung von alternierenden Büchi Automaten zu normalen Büchi Automaten. Daraus folgerbar auch LTL mit normalen Büchi Automaten.
