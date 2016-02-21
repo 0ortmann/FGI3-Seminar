@@ -10,7 +10,7 @@ Im vorangegangenen Abschnitt wurde die Semantik einer LTL Formel anhand einer Be
 \label{LTL->ABA}
     Gegeben eine LTL Formel $\varphi$ ist es möglich, einen alternierenden Büchi-Automaten $A_\varphi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\varphi|)$, sodass gilt: $L_\omega(A_\varphi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\varphi$ erfüllen.
 \end{satz}
-Für die gleich folgende Definition des 5-Tupels des alternierenden Büchi-Automaten benötigen wir eine leicht veränderte Definition für Dualismus; analog zu \cite{vardi+96} bilden wir $\overline{\varphi}$ durch Vertauschen von $\land$ und $\lor$, das Vertauschen von $\top$ und $\bot$ und durch das Negieren von Teilformen in $S$:
+Für die gleich folgende Definition des 5-Tupels des alternierenden Büchi-Automaten benötigen wir eine leicht veränderte Definition für Dualismus; analog zu \cite{vardi+96} bilden wir $\overline{\varphi}$ durch Vertauschen von $\land$ und $\lor$, das Vertauschen von $\top$ und $\bot$ und durch das Negieren von Teilformeln in $S$:
 \begin{equation}
 \label{aba-zu-ltl:dualismus}
 \begin{split}
