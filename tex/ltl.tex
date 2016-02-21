@@ -27,11 +27,11 @@ Ferner verwenden wir im Folgenden eine Klammern-sparende Notation, orientiert an
 \subsection{Semantik}
 \label{ltl:semantik}
 
-Um Programme mithilfe von LTL Formeln verifizieren zu können, muss ein Model des zu verifizierenden Programms erstellt werden. Ein gängiger Ansatz ist die Modellierung als beschriftetes Transitionssystem\cite{huth+04}. Die LTL Formel würde dann entlang der Pfade des Transitionssystems interpretiert werden. 
+Um Programme mithilfe von LTL Formeln verifizieren zu können, muss ein Model des zu verifizierenden Programms erstellt werden. Ein gängiger Ansatz ist die Modellierung als beschriftetes Transitionssystem \cite{huth+04}. Die LTL Formel würde dann entlang der Pfade des Transitionssystems interpretiert werden. 
 
 In \cite{vardi+96} wird ein ähnlicher Ansatz gewählt: Die Menge aller atomaren Aussagensymbole wird definiert als $Prop$. Der Begriff einer "`Berechnung"' wird definiert als Funktion, die zu jedem Zeitpunkt $i \in \mathbb{N}$ den Elementen von $Prop$ Wahrheitswerte zuweist. Auf diese Weise lässt sich die Funktion der "`Berechnung"' $\pi$ darstellen als $\pi : \mathbb{N} \rightarrow 2^{Prop}$. 
 
-Mit Hilfe der obigen syntaktischen von LTL und der einer "`Berechnung"' interpretieren wir LTL Formeln nun nicht über die Pfade eines Transitionssystems sondern über einer Berechnung. Es folgt die semantische Definition von LTL: 
+Mit Hilfe der obigen syntaktischen Definition von LTL und der einer "`Berechnung"' interpretieren wir LTL Formeln nun nicht über die Pfade eines Transitionssystems sondern über einer Berechnung. Es folgt die semantische Definition von LTL: 
 \begin{equation*}
 \begin{split}
     \pi, i &\models p\ gdw.\ p \in Prop\\
