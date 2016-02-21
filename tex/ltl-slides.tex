@@ -1,0 +1,100 @@
+\section{LTL -- Linear-Time Temporal Logic}
+
+\subsection{Überblick}
+\begin{frame}{\insertsubsection}
+    LTL -- Lineare Temporale Logik:
+    \vspace*{1em}
+    \begin{itemize}
+        \setlength\itemsep{1.5em}
+        \item Aussagen über Zukunft
+        \item Zeit $\approx$ Abfolge von Zuständen \cite{huth+04}
+        \item Minimalset besteht aus:
+        \begin{itemize}
+            \item aussagenlogische Atome ($p, q, ...$) 
+            \item boolesche Konnektoren ($\lnot \land \lor$)
+            \item temporale Konnektoren ($X U$)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+
+\subsection{Syntax}
+\begin{frame}{\insertsubsection}
+    \begin{block}{Syntax in Backus Naur Form}
+        \vspace*{-1em}
+        \begin{equation*}
+        \label{ltl:syntax_basics}
+            \varphi := \top\ |\ \bot\ |\ p\ |\ (\lnot\varphi)\ |\ (\varphi \land \varphi)\ |\ (\varphi \lor \varphi)\ |\ (X\varphi)\ |\ (\varphi U\varphi)
+        \end{equation*}
+    \end{block}
+    \vspace*{1em}
+    \begin{block}{Definition der Konnektoren \textit{F, G} und \textit{R}}
+        \vspace*{-1em}
+        \begin{equation*}
+        \label{ltl:syntax_details}
+        \begin{split}
+            F\varphi &:= \top U\varphi\\
+            G\varphi &:= \lnot F\lnot\varphi\\
+            \varphi R\psi &:= \lnot(\lnot\varphi U\lnot\psi)\\
+        \end{split}
+        \end{equation*}
+    \end{block}
+\end{frame}
+
+\subsection{Semantik Überblick}
+\begin{frame}{\insertsubsection}
+    \begin{block}{Interpretation der LTL Symbole}
+        \begin{enumerate}
+        \setlength\itemsep{1em}
+            \item Über den Pfaden eines beschrifteten Transitionssystems
+            \item Über einer \textit{Berechnung} (x)
+        \end{enumerate}
+    \end{block}
+    \begin{block}{Berechnung}
+        \begin{itemize}
+        \setlength\itemsep{1em}
+            \item \textit{Berechnung: weise pro Zeiteinheit den Aussagensymbolen einen Wahrheitswert zu}
+            \item $\pi : \mathbb{N} \rightarrow 2^{Prop}$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\subsection{Semantische Definition von LTL}
+\begin{frame}{\insertsubsection}
+    Die minimale Menge an LTL-Operatoren und Symbolen und ihre semantische Bedeutung:
+    \begin{block}{Berechnung $\pi : \mathbb{N} \rightarrow 2^{Prop}$}
+    \vspace*{-1em}
+    \begin{equation*}
+        \begin{split}
+            \pi, i &\models p\ gdw.\ p \in Prop\\
+            \pi, i &\models \varphi \land \psi\ gdw.\ \pi, i \models \varphi\ und\ \pi, i \models \psi\\
+            \pi, i &\models \lnot\varphi\ gdw.\ \pi, i \not\models \varphi\\
+            \pi, i &\models X\varphi\ gdw.\ \pi, i+1 \models \varphi\\
+            \pi, i &\models \varphi U\psi\ gdw.\ \exists j \geq i: \pi, j \models \psi \\
+            &\ \ \ \ \land \forall k, i\leq k<j: \pi, k \models \varphi
+        \end{split}
+    \end{equation*}
+    \end{block}
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+    Die erweiterte Menge an LTL-Operatoren und Symbolen und ihre semantische Bedeutung:
+    \begin{block}{Berechnung $\pi : \mathbb{N} \rightarrow 2^{Prop}$}
+    \vspace*{-1em}
+    \begin{equation*}
+        \begin{split}
+            \pi, i &\models F\varphi\ gdw.\ \exists j \geq i: \pi, j \models \varphi\\
+            \pi, i &\models G\varphi \ gdw.\ \forall j \geq i: \pi, j \models \varphi\\
+            \pi, i &\models \varphi R\psi\ gdw.\ \forall j \geq i: \pi, j \models \psi \lor (\exists l \geq i: \pi, l \models \varphi \land \forall i \leq k < l: \pi, k \models \psi)
+        \end{split}
+    \end{equation*}
+    \end{block}
+    \begin{block}{Erfüllbarkeit}
+    \vspace*{-1em}
+    \begin{equation*}
+        \begin{split}
+            \pi &\models \varphi\ gdw.\ \pi, 0 \models \varphi
+        \end{split}
+    \end{equation*}
+    Wir sagen dann \textit{$\pi$ erfüllt $\varphi$ oder auch $\pi$ modelliert $\varphi$} \cite{vardi+96}.
+    \end{block}
+\end{frame}

@@ -1,6 +1,6 @@
 % !TeX program = xelatex
 % !TeX spellcheck = de_DE
-\documentclass{beamer}
+\documentclass[14pt]{beamer}
 \usepackage{fontspec}
 \usepackage{polyglossia}
 \usepackage{hyperref}
@@ -8,6 +8,7 @@
 \usepackage{array}
 \usepackage{fontawesome}
 \usepackage[normalem]{ulem}
+\usepackage{amsmath}
 
 %\setsansfont{Calibri} %kann ich sonst nicht kompilieren
 \setdefaultlanguage{german}
@@ -16,7 +17,7 @@
 \def\authors#1#2{\author[#1]{#2}}
 \def\email#1{\texttt{#1}}
 \input{tex/meta}
-\date{22-26. Februar 2016}
+\date{23. Februar 2016}
 \titlegraphic{\includegraphics[width=3cm]{img/uhh.pdf}}
 
 \setcounter{tocdepth}{1}
@@ -54,14 +55,14 @@
 	\tableofcontents
 \end{frame}
 
-\section{Einführung}
+\include{tex/einleitung-slides}
 \section{Omega Automaten}
 \include{tex/omega-automaten-slides}
-\section{LTL}
-\section{Alternierende Büchi Automaten und LTL}
+\include{tex/ltl-slides}
+\include{tex/aba-zu-ltl-slides}
 \section{LTL auf normalen Büchi Automaten}
 \include{tex/ba-zu-ltl-slides} 
-\section{Ausblick: Modelchecking}
+\include{tex/modelchecking-slides}
 \section{Zusammenfassung}
 
 % Literatur
@@ -72,8 +73,5 @@
 	\bibliographystyle{abbrv}
 	\bibliography{bib}
 \end{frame}
-\begin{frame}[allowframebreaks]{Bildquellen}
-\end{frame}
-
 
 \end{document}
