@@ -5,19 +5,19 @@ LTL ist eine Kurzschreibweise für "`Linear-Time Temporal Logic"' oder zu deutsc
 \subsection{Syntax}
 
 LTL-Formeln setzen sich zusammen aus atomaren Symbolen -- wie sie auch in der Aussagenlogik bekannt sind -- den booleschen Konnektoren ($\lnot \land \lor$), sowie einer Menge an temporalen Konnektoren (\textit{X U}) \cite{huth+04,vardi+96}. Dabei ist \textit{X} ein unärer und \textit{U} ein binärer Konnektor. Mit dieser minimalen Menge an Konnektoren lassen sich alle weiteren LTL Formeln bilden \cite{vardi+96}.
-Um dies sowie die Bildungsregeln zu verdeutlichen ist nachfolgend die Syntax von LTL in Backus Naur Form dargestellt, wobei $p$ ein aussagenlogisches Atom und $\phi$ eine LTL Formel ist:
+Um dies sowie die Bildungsregeln zu verdeutlichen ist nachfolgend die Syntax von LTL in Backus Naur Form dargestellt, wobei $p$ ein aussagenlogisches Atom und $\varphi$ eine LTL Formel ist:
 \begin{equation}
 \label{ltl:syntax_basics}
-    \phi := \top\ |\ \bot\ |\ p\ |\ (\lnot\phi)\ |\ (\phi \land \phi)\ |\ (\phi \lor \phi)\ |\ (X\phi)\ |\ (\phi U\phi)
+    \varphi := \top\ |\ \bot\ |\ p\ |\ (\lnot\varphi)\ |\ (\varphi \land \varphi)\ |\ (\varphi \lor \varphi)\ |\ (X\varphi)\ |\ (\varphi U\varphi)
 \end{equation}
 
 Vergleiche \cite{huth+04} (wobei wir eine reduzierte Form der LTL Symbole verwenden, ohne direkte Definition von $F$, $G$ und $R$); "`Finally"', "`Globally"' und "`Release"' definieren wir unter Zuhilfenahme der anderen Operatoren und Konnektoren wie folgt:
 \begin{equation}
 \label{ltl:syntax_details}
 \begin{split}
-    F\phi &:= \top U\phi\\
-    G\phi &:= \lnot F\lnot\phi\\
-    \phi R\psi &:= \lnot(\lnot\phi U\lnot\psi)\\
+    F\varphi &:= \top U\varphi\\
+    G\varphi &:= \lnot F\lnot\varphi\\
+    \varphi R\psi &:= \lnot(\lnot\varphi U\lnot\psi)\\
 \end{split}
 \end{equation}
 
@@ -25,6 +25,7 @@ Ferner verwenden wir im Folgenden eine Klammern-sparende Notation, orientiert an
 
 
 \subsection{Semantik}
+\label{ltl:semantik}
 
 Um Programme mithilfe von LTL Formeln verifizieren zu können, muss ein Model des zu verifizierenden Programms erstellt werden. Ein gängiger Ansatz ist die Modellierung als beschriftetes Transitionssystem\cite{huth+04}. Die LTL Formel würde dann entlang der Pfade des Transitionssystems interpretiert werden. 
 
@@ -34,10 +35,10 @@ Mit Hilfe der obigen syntaktischen von LTL und der einer "`Berechnung"' interpre
 \begin{equation*}
 \begin{split}
     \pi, i &\models p\ gdw.\ p \in Prop\\
-    \pi, i &\models \phi \land \psi\ gdw.\ \pi, i \models \phi\ und\ \pi, i \models \psi\\
-    \pi, i &\models \lnot\phi\ gdw.\ \pi, i \not\models \phi\\
-    \pi, i &\models X\phi\ gdw.\ \pi, i+1 \models \phi\\
-    \pi, i &\models \phi U\psi\ gdw.\ \exists j \geq i: \pi, j \models \psi \land \forall k, i\leq k<j: \pi, k \models \phi
+    \pi, i &\models \varphi \land \psi\ gdw.\ \pi, i \models \varphi\ und\ \pi, i \models \psi\\
+    \pi, i &\models \lnot\varphi\ gdw.\ \pi, i \not\models \varphi\\
+    \pi, i &\models X\varphi\ gdw.\ \pi, i+1 \models \varphi\\
+    \pi, i &\models \varphi U\psi\ gdw.\ \exists j \geq i: \pi, j \models \psi \land \forall k, i\leq k<j: \pi, k \models \varphi
 \end{split}
 \end{equation*}
 
@@ -45,14 +46,14 @@ Dies umfasst die minimale Menge an semantischen Definitionen nach \cite{vardi+96
 
 \begin{equation*}
 \begin{split}
-    \pi, i &\models F\phi\ gdw.\ \exists j \geq i: \pi, j \models \phi\\
-    \pi, i &\models G\phi \ gdw.\ \forall j \geq i: \pi, j \models \phi\\
-    \pi, i &\models \phi R\psi\ gdw.\ \forall j \geq i: \pi, j \models \psi \lor (\exists l \geq i: \pi, l \models \phi \land \forall i \leq k < l: \pi, k \models \psi)
+    \pi, i &\models F\varphi\ gdw.\ \exists j \geq i: \pi, j \models \varphi\\
+    \pi, i &\models G\varphi \ gdw.\ \forall j \geq i: \pi, j \models \varphi\\
+    \pi, i &\models \varphi R\psi\ gdw.\ \forall j \geq i: \pi, j \models \psi \lor (\exists l \geq i: \pi, l \models \varphi \land \forall i \leq k < l: \pi, k \models \psi)
 \end{split}
 \end{equation*}
 Weiterhin wird Erfüllbarkeit definiert wie folgt: 
 \[
-    \pi \models \phi\ gdw.\ \pi, 0 \models \phi
+    \pi \models \varphi\ gdw.\ \pi, 0 \models \varphi
 \]
-Wir sagen dann "`$\pi$ erfüllt $\phi$"' oder auch "`$\pi$ modelliert $\phi$"' \cite{vardi+96}.
+Wir sagen dann "`$\pi$ erfüllt $\varphi$"' oder auch "`$\pi$ modelliert $\varphi$"' \cite{vardi+96}.
 

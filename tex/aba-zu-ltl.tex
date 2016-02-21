@@ -1,6 +1,6 @@
-\section{LTL zu alternierenden Büchi Automaten}
+\section{LTL zu alternierenden Büchi-Automaten}
 
-Der folgende Abschnitt stellt ein Übersetzungsverfahren von LTL Formeln zu alternierenden Büchi Automaten vor. Darauf aufbauend kann die Erfüllbarkeit einer LTL Formel mit Hilfe des äquivalenten alterniereden Büchi Automaten festgestellt werden. Das Verfahren und der Beweis nach \cite{vardi+96} werden diskutiert. Vorteile dieses Verfahrens werden kurz vorgestellt. 
+Der folgende Abschnitt stellt ein Übersetzungsverfahren von LTL Formeln zu alternierenden Büchi-Automaten vor. Darauf aufbauend kann die Erfüllbarkeit einer LTL Formel mit Hilfe des äquivalenten alterniereden Büchi-Automaten festgestellt werden. Das Verfahren und der Beweis nach \cite{vardi+96} werden diskutiert.
 
 
 \subsection{Verfahren}
@@ -8,20 +8,20 @@ Der folgende Abschnitt stellt ein Übersetzungsverfahren von LTL Formeln zu alte
 Im vorangegangenen Abschnitt wurde die Semantik einer LTL Formel anhand einer Berechnung definiert. Berechnungen können auch als unendliche Worte über dem Alphabet $2^{Prop}$ dargestellt werden\cite{vardi+96}. Aufgrund dieser Verbindung gilt:
 \begin{satz}\cite{vardi+96}
 \label{LTL->ABA}
-    Gegeben eine LTL Formel $\phi$ ist es möglich, einen alternierenden Büchi Automaten $A_\phi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\phi|)$, sodass gilt: $L_\omega(A_\phi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\phi$ erfüllen.
+    Gegeben eine LTL Formel $\varphi$ ist es möglich, einen alternierenden Büchi-Automaten $A_\varphi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\varphi|)$, sodass gilt: $L_\omega(A_\varphi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\varphi$ erfüllen.
 \end{satz}
-Für die gleich folgende Definition des 5-Tupels des alternierenden Büchi Automaten benötigen wir eine leicht veränderte Definition für Dualismus; analog zu \cite{vardi+96} bilden wir $\overline{\phi}$ durch Vertauschen von $\land$ und $\lor$, das Vertauschen von $\top$ und $\bot$ und durch das Negieren von Teilformen in $S$:
+Für die gleich folgende Definition des 5-Tupels des alternierenden Büchi-Automaten benötigen wir eine leicht veränderte Definition für Dualismus; analog zu \cite{vardi+96} bilden wir $\overline{\varphi}$ durch Vertauschen von $\land$ und $\lor$, das Vertauschen von $\top$ und $\bot$ und durch das Negieren von Teilformen in $S$:
 \begin{equation}
 \label{aba-zu-ltl:dualismus}
 \begin{split}
-    \overline{\phi} &= \lnot\phi, \phi \in S\\
+    \overline{\varphi} &= \lnot\varphi, \varphi \in S\\
     \overline{\top} &= \bot\\
     \overline{\bot} &= \top\\
     \overline{(\alpha \land \beta)} &= (\overline{\alpha} \lor \overline{\beta})\\
     \overline{(\alpha \lor \beta)} &= (\overline{\alpha} \land \overline{\beta})
 \end{split}
 \end{equation}
-Mit dieser Definition von Dualismus können wir nun die Konstruktionsregeln für den alternierenden Büchi Automaten $A_\phi$ nach \cite{vardi+96} angeben: Die Gesamtzustandsmenge $S$ ist die Menge aller Teilformeln von $\phi$ und deren Negationen. Dabei vereinfachen wir doppelte Negation, sodass $\lnot\lnot\psi = \psi$. Der Startzustand $s^0$ ist $\phi$. 
+Mit dieser Definition von Dualismus können wir nun die Konstruktionsregeln für den alternierenden Büchi-Automaten $A_\varphi$ nach \cite{vardi+96} angeben: Die Gesamtzustandsmenge $S$ ist die Menge aller Teilformeln von $\varphi$ und deren Negationen. Dabei vereinfachen wir doppelte Negation, sodass $\lnot\lnot\psi = \psi$. Der Startzustand $s^0$ ist $\varphi$. 
 Die Menge der Endzustände $F$ wird definiert als all jene Teilformeln aus $S$, die in der Form $\lnot(\sigma U\psi)$ sind. Abschließend wird die Übergangsfunktion $\rho$ wie folgt definiert:
 \begin{equation}
 \label{aba-zu-ltl:transitionsfunktion}
@@ -39,11 +39,11 @@ Die Menge der Endzustände $F$ wird definiert als all jene Teilformeln aus $S$, 
 
 \subsection{Beweis}
 
-Wie in Abschnitt \ref{subsec:aba} definiert, ist ein Lauf eines alternierenden Büchi Automaten als unendlicher, beschrifteter Baum zu betrachten. Die möglichen Beschriftungen der Knoten des Baumes sind alle Elemente der Zustandsmenge des Automaten. Sei nun der alternierende Büchi Automat $A_\phi$ nach dem Verfahren aus \ref{subsection:verfahren} konstruiert. Die möglichen Beschriftungen des Lauf-Baumes sind genau all jene Teilformeln der LTL Formel $\phi$ und deren Negationen.
+Wie in Abschnitt \ref{subsec:aba} definiert, ist ein Lauf eines alternierenden Büchi-Automaten als unendlicher, beschrifteter Baum zu betrachten. Die möglichen Beschriftungen der Knoten des Baumes sind alle Elemente der Zustandsmenge des Automaten. Sei nun der alternierende Büchi Automat $A_\varphi$ nach dem Verfahren aus \ref{subsection:verfahren} konstruiert. Die möglichen Beschriftungen des Lauf-Baumes sind genau all jene Teilformeln der LTL Formel $\varphi$ und deren Negationen.
 
-Sei nun $l$ ein Lauf von $A_\phi$. Der Laufbaum $l$ kann nur zwei Arten von unendlichen Ästen haben -- entweder ist ein unendlicher Ast beschriftet mit $\sigma U\psi$ oder mit $\lnot(\sigma U\psi)$ \cite{vardi+96}. Diese beiden möglichen Beschriftungen bringen unterschiedliche Eigenschaften. 
+Sei nun $l$ ein Lauf von $A_\varphi$. Der Laufbaum $l$ kann nur zwei Arten von unendlichen Ästen haben -- entweder ist ein unendlicher Ast beschriftet mit $\sigma U\psi$ oder mit $\lnot(\sigma U\psi)$ \cite{vardi+96}. Diese beiden möglichen Beschriftungen bringen unterschiedliche Eigenschaften. 
 
-Wenn ein unendlicher Ast ab einem bestimmten Punkt mit $\sigma U\psi$ beschriftet ist, kann nicht Bestimmtheit festgestellt werden, ob die Formel zu diesem Zeitpunkt gültig ist; durch die Definition von $\sigma U\psi$ kann nicht mit Bestimmtheit vorhergesagt werden, dass $\psi$ überhaupt eintritt. Allerdings kann für einen unendlichen Ast, der ab einem bestimmten Punkt mit $\lnot(\sigma U\psi)$ beschriftetet ist, mit Bestimmtheit festgestellt werden, dass $\sigma U\psi$ tatsächlich nicht gilt -- über die Definition von $\rho$:
+Wenn ein unendlicher Ast ab einem bestimmten Punkt mit $\sigma U\psi$ beschriftet ist, so muss zwar irgendwann $\psi$ gelten, aber das kann unendlich lange dauern; durch die Definition von $\sigma U\psi$ kann nicht mit Bestimmtheit vorhergesagt werden, zu welchem Zeitpunkt $\psi$ eintritt. Allerdings kann für einen unendlichen Ast, der ab einem bestimmten Punkt mit $\lnot(\sigma U\psi)$ beschriftetet ist, mit Bestimmtheit festgestellt werden, dass $\sigma U\psi$ tatsächlich nicht gilt -- über die Definition von $\rho$:
 \begin{equation}
 \begin{split}
     \rho(\lnot(\sigma U\psi), a) &= \overline{\rho(\psi, a) \lor (\rho(\sigma, a) \land \sigma U\psi)}\\
@@ -56,5 +56,4 @@ Es wird also ab einem bestimmten Punkt $\lnot\psi$ gelten und somit $\lnot(\sigm
 
 In der Verfahrensbeschreibung in \ref{subsection:verfahren} wurde die Endzustandsmenge definiert als "`all jene Teilformeln aus $S$, die in der Form $\lnot(\sigma U\psi)$ sind"'. $\square$
 
-\subsection{Vorteile}
-Vorteile evtl besser in die nächste section, da laufzeit (kein exponential blowup) erst interessant, wenn alternierender büchi -> büchi gemacht wurde. sons ist der vergleich mit anderen verfahren witzlos (weil andere verfahren, die direkt ltl->büchi machen einen exponential blowup haben)\todo{besprechen}
+Abschließend lässt sich festhalten, dass LTL Formeln sich auf alternierende Büchi-Automaten übertragen lassen. Wird ein Büchi-Automat nach obigen Verfahren für eine Formel $\varphi$ konstruiert, so ist die akzeptierende Sprache des Automaten exakt die Menge der Berechnungen, die $\varphi$ erfüllen.
