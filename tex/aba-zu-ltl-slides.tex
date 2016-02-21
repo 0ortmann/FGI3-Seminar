@@ -2,16 +2,125 @@
 
 \subsection{Zielsetzung}
 \begin{frame}{\insertsubsection}
+\begin{block}{Ziel}
+    Fragestellungen des LTL Modelcheckings mit automatentheoretischen Mitteln beantworten.
+\end{block}
+\vspace*{1.5em}
+\begin{block}{Satz: LTL Formel $\rightarrow$ alternierende Büchi-Automaten \cite{vardi+96}}
+    Gegeben eine LTL Formel $\varphi$ ist es möglich, einen alternierenden Büchi-Automaten $A_\varphi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\varphi|)$, sodass gilt: $L_\omega(A_\varphi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\varphi$ erfüllen.
+\end{block}
 \end{frame}
 
-\subsection{Verfahren nach Vardi}
+\subsection{Verfahren nach Vardi \cite{vardi+96}}
 \begin{frame}{\insertsubsection}
+Um LTL Formeln gut auf alternierende Büchi Automaten übertragen zu können, benötigen wir...
+\vspace*{1em}
+\begin{enumerate}
+    \setlength\itemsep{1.5em}
+    \item alternative Definition von Dualismus
+    \item Konstruktionsregeln für Automaten
+    \item Definition der Übergangsfunktion
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+\begin{block}{Alternative Definition von Dualismus}
+    \vspace*{-1em}
+    \begin{equation*}
+    \label{aba-zu-ltl:dualismus}
+    \begin{split}
+        \overline{\varphi} &= \lnot\varphi, \varphi \in S\\
+        \overline{\top} &= \bot\\
+        \overline{\bot} &= \top\\
+        \overline{(\alpha \land \beta)} &= (\overline{\alpha} \lor \overline{\beta})\\
+        \overline{(\alpha \lor \beta)} &= (\overline{\alpha} \land \overline{\beta})
+    \end{split}
+    \end{equation*}
+\end{block}
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+\begin{block}{Konstruktionsregeln für Automaten}
+Alternierender Büchi-Automat $A_\varphi = (\Sigma, S, s^0, \rho, F)$:
+\vspace*{1em}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item $S$: Menge aller Teilformeln von $\varphi$ inkl. Negation
+        \item doppelte Negation vereinfachen: $\lnot\lnot\psi = \psi$
+        \item $s^0 = \varphi$
+        \item $F$: Menge aller Teilformeln aus $S$, in der Form $\lnot(\sigma U\psi)$
+        \item Übergangsfunktion $\rho$
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+\begin{block}{Die Übergangsfunktion $\rho$}
+    \vspace*{-1em}
+    \begin{equation*}
+    \label{aba-zu-ltl:transitionsfunktion}
+    \begin{split}
+        \rho(p, a) &= \top, falls \ p \in a,\\
+        \rho(p, a) &= \bot, falls \ p \not\in a,\\
+        \rho(\sigma \land \psi, a) &= \rho(\sigma, a) \land \rho(\psi, a),\\
+        \rho(\sigma \lor \psi, a) &= \rho(\sigma, a) \lor \rho(\psi, a),\\
+        \rho(\lnot\psi, a) &= \overline{\rho(\psi, a)},\\
+        \rho(X\psi, a) &= \psi,\\
+        \rho(\sigma U\psi, a) &= \rho(\psi, a) \lor (\rho(\sigma, a) \land \sigma U\psi)
+    \end{split}
+    \end{equation*}
+\end{block}
 \end{frame}
 
 \subsection{Beweis}
 \begin{frame}{\insertsubsection}
+\begin{itemize}
+    \item Laufbaum des alternierenden Büchi-Automaten betrachten
+    \item Knoten im Baum beschriftet mit Elementen $\in 2^{Prop} = \Sigma$
+    \item zwei Arten von unendlichen Ästen
+    \begin{enumerate}
+        \item beschriftet mit $(\sigma U\psi)$
+        \item beschriftet mit $\lnot(\sigma U\psi)$
+    \end{enumerate}
+    \item $(\sigma U\psi)$: es muss zwar irgendwann $\psi$ gelten, aber das kann unendlich lange dauern!
+    \item $\lnot(\sigma U\psi)$: es muss ab einem bestimmtem Zeitpunkt $\lnot\psi$ gelten -- via Definition der Übergangsfunktion $\rho$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{\insertsubsection}
+    \begin{block}{Unendliche Äste beschriftet mit $\lnot(\sigma U\psi)$}
+        \begin{equation*}
+        \begin{split}
+            \rho(\lnot(\sigma U\psi), a) &= \overline{\rho(\psi, a) \lor (\rho(\sigma, a) \land \sigma U\psi)}\\
+            &= \overline{\rho(\psi, a)} \land \overline{(\rho(\sigma, a) \land \sigma U\psi)}\\
+            &= \overline{\rho(\psi, a)} \land (\overline{\rho(\sigma, a)} \lor \overline{\sigma U\psi)}\\
+            &= \overline{\rho(\psi, a)} \land (\overline{\rho(\sigma, a)} \lor \lnot(\sigma U\psi))\\
+        \end{split}
+        \end{equation*}
+    \end{block}
+
+    \begin{itemize}
+    \setlength\itemsep{1em}
+        \item Es gilt also $\lnot\psi$ ab dem Zeitpunkt, an dem ein unendlicher Ast mit $\lnot(\sigma U\psi)$ beschriftet ist -- und somit gilt auch $\lnot(\sigma U\psi)$.
+        \item Vergleiche die Definition von $F$ 
+    \end{itemize}
 \end{frame}
 
 \subsection{Zusammenfassung}
 \begin{frame}{\insertsubsection}
+\begin{block}{Verfahren Überblick}
+    \begin{itemize}
+        \setlength\itemsep{0.7em}
+        \item wir kennen nun Konstruktionsregeln für alternierenden Büchi-Automaten
+        \item $L_\omega(A_\varphi):$ Menge aller Berechnungen, die $\varphi$ erfüllen
+        \item \textit{Mapping} von LTL Formel zu Automat
+    \end{itemize}
+\end{block}
+\begin{block}{Was nun?}
+    \begin{itemize}
+        \setlength\itemsep{0.7em}
+        \item Eigenschaften von LTL Formeln via automatentheoretische Mittel
+        \item Dazu: \textit{normale} Büchi-Automaten verwenden
+    \end{itemize}
+\end{block}
 \end{frame}
