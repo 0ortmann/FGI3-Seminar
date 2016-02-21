@@ -84,7 +84,8 @@
         \begin{split}
             \pi, i &\models F\varphi\ gdw.\ \exists j \geq i: \pi, j \models \varphi\\
             \pi, i &\models G\varphi \ gdw.\ \forall j \geq i: \pi, j \models \varphi\\
-            \pi, i &\models \varphi R\psi\ gdw.\ \forall j \geq i: \pi, j \models \psi \lor (\exists l \geq i: \pi, l \models \varphi \land \forall i \leq k < l: \pi, k \models \psi)
+            \pi, i &\models \varphi R\psi\ gdw.\ \forall j \geq i: \pi, j \models \psi \\
+            &\ \ \ \ \lor (\exists l \geq i: \pi, l \models \varphi \land \forall i \leq k < l: \pi, k \models \psi)
         \end{split}
     \end{equation*}
     \end{block}

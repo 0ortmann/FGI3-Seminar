@@ -2,16 +2,51 @@
 
 \subsection{Überblick}
 \begin{frame}{\insertsubsection}
+    \begin{block}{Programmmodelle}
+        \begin{itemize}
+            \item gelabeltes Transitionssystem
+            \item \textit{finite state} Programm (x)
+        \end{itemize}
+    \end{block}
+    \begin{block}{Finite state Programm}
+    $P = (W, w_0, R, V)$
+        \begin{itemize}
+            \item $W$: Menge aller Zustände
+            \item $w_0$: Startzustand
+            \item $R \subseteq W^2$: totale Erreichbarkeitsrelation
+            \item $V$: Funktion, die Wahrheitswerte zuweist; $V: W \rightarrow 2^{Prop}$
+        \end{itemize}
+    \end{block}
 \end{frame}
 
 \subsection{Finite State Programme}
 \begin{frame}{\insertsubsection}
+    \begin{block}{Berechnung in einem finite state Programm \cite{vardi+96}}
+    \begin{itemize}
+        \item unendliche Zustandsfolge: $u = u_0, u_1, ... $ wobei $\forall i \geq 0: u_i \in W$
+        \item $u_0 = w_0$
+        \item weise Zuständen in $u$ Aussagen zu
+        \item $\pi = V(u_0), V(u_1), ...$
+    \end{itemize}
+    \end{block}
+    \begin{block}{Erfüllbarkeit}
+        Wir sagen, dass $P$ eine gegebene LTL Formel $\varphi$ erfüllt, wenn \textit{alle} Berechnungen in $P$ die Formel $\varphi$ erfüllen.
+    \end{block}
 \end{frame}
 
 \subsection{Verifikationsproblem}
 \begin{frame}{\insertsubsection}
-\end{frame}
-
-\subsection{Zusammenfassung}
-\begin{frame}{\insertsubsection}
+    Die Entscheidung, ob ein finite state Programm $P$ eine Formel $\varphi$ erfüllt wird als {Verifikationsproblem} bezeichnet.
+    \begin{block}{Konstruktion}
+        Entscheidung mit automatentheoretischen Mitteln (siehe \cite[kap. 4.2]{vardi+96})
+        \begin{itemize}
+            \item Überführung finite state Programm $\rightarrow$ Büchi-Automat
+            \item jeder Lauf akzeptierend
+            \item $L_\omega(A_P)$: Menge aller Berechnungen in $P$
+        \end{itemize} 
+    \end{block}
+    \begin{block}{Reduktion des Problems}
+        Verifikationsproblem Programm $P$ und Formel $\varphi$ wird reduziert:
+        erfüllen alle akzeptierenden Worte von $A_P$ die Formeln $\varphi$?
+    \end{block}
 \end{frame}
