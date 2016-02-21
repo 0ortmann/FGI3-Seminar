@@ -1,1 +1,15 @@
 \section{Zusammenfassung}
+
+In diesem Abschnitt werden die Ergebnisse dieser Ausarbeitung nochmals zusammengefasst.
+
+Zuerst wurden die Grundlagen zu Automaten gelegt. Dabei wurden zuerst endliche Automaten kurz vorgestellt. Basierend auf den endlichen Automaten wurde die Alternation eingeführt, die es einem Automaten erlaubt in mehreren Zuständen gleichzeitig zu sein. Dafür werden die existenzielle und universelle Entscheidung in dem Automaten vereint. Die Automaten wurden auf unendliche Wörter erweitert, wofür Büchi-Automaten eingeführt wurden, die ebenfalls um die Alternation erweitert wurden.
+
+Anschließend wurde die "`Lineare Temporale Logik"' (LTL) eingeführt. Dabei wurde die Syntax und die Semantik unterschieden. Für die Semantik wurde der Ansatz von \cite{vardi+96} vorgestellt, der den Begriff der "`Berechnung"' einführt.
+
+Es folgte der erste Schritt der Abbildung von LTL auf Büchi-Automaten, der ein Übersetzungsverfahren von LTL Formeln zu alternierenden Büchi-Automaten darstellt. Dafür wurde der Satz aus \cite{vardi+96} und die dazugehörige Konstruktion des alternierenden Büchi-Automaten vorgestellt. Bei dieser Konstruktion wurde eine leicht veränderte Definition für Dualismus genutzt und als Endzustände all jene Teilformeln definiert, die in der Form $\lnot(\sigma U\psi)$ sind. Diese Konstruktion wurde anschließend bewiesen.
+
+Ausgehend von diesem ersten Schritt wurde im nächsten Abschnitt ein Satz für die Beziehung von alternierenden Büchi-Automaten und Büchi-Automaten angegeben, der besagt, dass es zu einem alternierenden Büchi-Automaten einen nichtdeterministischen Büchi-Automaten gibt, der die gleiche Sprache akzeptiert.
+
+Als Schlussfolgerung aus den beiden Sätzen beziehungsweise Konstruktionen wurde im nächsten Unterabschnitt die Übersetzung von LTL Formeln zu Büchi-Automaten dargestellt. Mit dem Verfahren der Nutzung von alternierenden Büchi-Automaten als Zwischenschritt wurde der exponentielle Blowup vermieden.
+
+Abschließend wurde im Ausblick auf das Modelchecking eingegangen. Dabei wurde vor allem auf die Verifikation von "`Finite State"' Programmen eingegangen. 
