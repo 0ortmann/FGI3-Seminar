@@ -1,25 +1,35 @@
 \begin{frame}{LTL auf Büchi-Automaten}
-\begin{block}{Schritte:}
+\begin{block}{Weitere Schritte:}
+\vspace{1em}
 \begin{itemize}
+\setlength\itemsep{1em}
 \item Überführung von alternierenden Büchi-Automaten zu normalen nichtdeterministischen Büchi-Automaten
+\pause
 \item Schlussfolgerung für LTL mit Büchi-Automaten
 \end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
-\begin{block}{Satz}
+\begin{block}{Ziel}
+Überführung von alternierenen Büchi-Automaten zu nichtdeterministischen Büchi-Automaten.
+\end{block}
+\vspace{1em}
+\begin{block}{Satz \cite{vardi+96}}
 Sei A ein alternierender Büchi-Automat. Dann gibt es einen nicht nichtdeterministischen Büchi-Automaten $A_n$ sodass $L_{\omega}(A_n)=L_{\omega}(A)$ gilt.
 \end{block}
 \end{frame}
 
 \begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
-\begin{block}{Beweis}
+\begin{block}{Beweis \cite{vardi+96}}
 \begin{itemize}
+\setlength\itemsep{1em}
 \item $A_n$ nimmt Lauf von A an und merkt sich gesamte Ebene eines Laufes
-\item einzelnen Ebenen eines Laufes sind Bäume
+\item Einzelne Ebenen eines Laufes sind Bäume
+\pause
 \item $A_n$ merkt sich das Auftreten von akzeptierenden Zuständen
-\item Aufteilung der Ebene eines Laufs in zwei Mengen
+\pause
+\item Aufteilung der Ebene eines Laufs in zwei Mengen:
 \begin{itemize}
 \item Zweige, die vor kurzem einen Endzustand erreicht haben
 \item Zweige, die vor kurzem keinen Endzustand erreicht haben
@@ -29,25 +39,33 @@ Sei A ein alternierender Büchi-Automat. Dann gibt es einen nicht nichtdetermini
 \end{frame}
 
 \begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
-\begin{block}{Beweis (Konstruktion)}
+\begin{block}{Beweis (Konstruktion) \cite{vardi+96}}
 Gegeben $A=(\Sigma,S, s^0, \rho, F)$. Dann $A_n=(\Sigma,S_n,S^0,\rho_n,F_n)$ mit
+\pause
 \begin{itemize}
+\setlength\itemsep{1em}
 \item $S_n=2^S\times 2^S$
+\pause
 \item $F_n=\emptyset\times 2^S$
+\pause
 \item und für die Transitionsfunktion gilt: $\rightarrow$ nächste Folie
 \end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
-\begin{block}{Beweis (Transitionsfunktion Teil 1)}
+\begin{block}{Beweis (Transitionsfunktion Teil 1) \cite{vardi+96}}
 Für die Transitionsfunktion gilt:
 \begin{itemize}
+\setlength\itemsep{1em}
 \item für $U\neq\emptyset$:
 \begin{align*}
 \rho_n((U,V),a)=\{(U',V')| \text{es gibt} X,Y\subseteq S\text{ sodass}&\\
+\pause
 X \text{ erfüllt} \bigwedge_{t \in U}\rho(t,a),\\
+\pause
 Y \text{ erfüllt} \bigwedge_{t_\in V}\rho(t,a),\\
+\pause
 U'=X-F, \text{ und } V'=Y\cup(X\cap F)\},
 \end{align*}
 \end{itemize}
@@ -55,13 +73,15 @@ U'=X-F, \text{ und } V'=Y\cup(X\cap F)\},
 \end{frame}
 
 \begin{frame}{Alternierende Büchi-Automaten zu Büchi-Automaten}
-\begin{block}{Beweis (Transitionsfunktion Teil 2)}
+\begin{block}{Beweis (Transitionsfunktion Teil 2) \cite{vardi+96}}
 Für die Transitionsfunktion gilt:
 \begin{itemize}
 \item für $U=\emptyset$:
 \begin{align*}
 \rho_n((\emptyset,V),a)=\{(U',V')|\text{ es gibt } X,Y\subseteq S \text{ sodass }\\
+\pause
 Y \text{ erfüllt } \bigwedge_{t_\in V}\rho(t,a),\\
+\pause
 U'=Y-F\text{, und } V'=Y\cap F\}.
 \end{align*}
 \end{itemize}
@@ -71,5 +91,12 @@ U'=Y-F\text{, und } V'=Y\cap F\}.
 \begin{frame}{LTL und Büchi-Automaten}
 \begin{block}{Korollar \cite{vardi+96,vardi+94}}
 Gegeben eine LTL Formel $\varphi$ ist es möglich einen Büchi-Automaten $A_{\varphi}=(\Sigma,S, S^0,\rho,F)$ zu konstruieren, wobei $\Sigma=2^{Prop}$ und $|S|$ in $2^{O(|\varphi|)}$, sodass $L_{\omega}(A_n)$ genau die Menge der Berechnungen, die die Formel $\varphi$ erfüllen.
+\end{block}
+\begin{block}{Beweis}
+\begin{itemize}
+\setlength\itemsep{1em}
+\item Beweis teilt sich in den Beweis der Logik und der Kombinatorik
+\item Dadurch bereits durch die vorigen Beweise der Sätze erledigt
+\end{itemize}
 \end{block}
 \end{frame}
