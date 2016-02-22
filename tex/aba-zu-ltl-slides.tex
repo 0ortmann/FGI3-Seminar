@@ -5,6 +5,7 @@
 \begin{block}{Ziel}
     Fragestellungen des LTL Modelcheckings mit automatentheoretischen Mitteln beantworten.
 \end{block}
+\pause
 \vspace*{1.5em}
 \begin{block}{Satz: LTL Formel $\rightarrow$ alternierende Büchi-Automaten \cite{vardi+96}}
     Gegeben eine LTL Formel $\varphi$ ist es möglich, einen alternierenden Büchi-Automaten $A_\varphi = (\Sigma, S, s^0, \rho, F)$ zu konstruieren, wobei $\Sigma = 2^{Prop}$ und $|S| = \mathcal{O}(|\varphi|)$, sodass gilt: $L_\omega(A_\varphi)$ bildet exakt die Menge der Berechnungen, die die LTL Formel $\varphi$ erfüllen.
@@ -15,7 +16,7 @@
 \begin{frame}{\insertsubsection}
 Um LTL Formeln gut auf alternierende Büchi Automaten übertragen zu können, benötigen wir...
 \vspace*{1em}
-\begin{enumerate}
+\begin{enumerate}[<+->]
     \setlength\itemsep{1.5em}
     \item alternative Definition von Dualismus
     \item Konstruktionsregeln für Automaten
@@ -24,7 +25,7 @@ Um LTL Formeln gut auf alternierende Büchi Automaten übertragen zu können, be
 \end{frame}
 
 \begin{frame}{\insertsubsection}
-\begin{block}{Alternative Definition von Dualismus}
+\begin{block}{Alternative Definition von Dualismus (1/3)}
     \vspace*{-1em}
     \begin{equation*}
     \label{aba-zu-ltl:dualismus}
@@ -40,10 +41,10 @@ Um LTL Formeln gut auf alternierende Büchi Automaten übertragen zu können, be
 \end{frame}
 
 \begin{frame}{\insertsubsection}
-\begin{block}{Konstruktionsregeln für Automaten}
+\begin{block}{Konstruktionsregeln für Automaten (2/3)}
 Alternierender Büchi-Automat $A_\varphi = (\Sigma, S, s^0, \rho, F)$:
 \vspace*{1em}
-    \begin{itemize}
+    \begin{itemize}[<+->]
         \setlength\itemsep{1em}
         \item $S$: Menge aller Teilformeln von $\varphi$ inkl. Negation
         \item doppelte Negation vereinfachen: $\lnot\lnot\psi = \psi$
@@ -55,7 +56,7 @@ Alternierender Büchi-Automat $A_\varphi = (\Sigma, S, s^0, \rho, F)$:
 \end{frame}
 
 \begin{frame}{\insertsubsection}
-\begin{block}{Die Übergangsfunktion $\rho$}
+\begin{block}{Die Übergangsfunktion $\rho$ (3/3)}
     \vspace*{-1em}
     \begin{equation*}
     \label{aba-zu-ltl:transitionsfunktion}
@@ -77,11 +78,13 @@ Alternierender Büchi-Automat $A_\varphi = (\Sigma, S, s^0, \rho, F)$:
 \begin{itemize}
     \item Laufbaum des alternierenden Büchi-Automaten betrachten
     \item Knoten im Baum beschriftet mit Elementen $\in 2^{Prop} = \Sigma$
+    \pause
     \item zwei Arten von unendlichen Ästen
     \begin{enumerate}
         \item beschriftet mit $(\sigma U\psi)$
         \item beschriftet mit $\lnot(\sigma U\psi)$
     \end{enumerate}
+    \pause
     \item $(\sigma U\psi)$: es muss zwar irgendwann $\psi$ gelten, aber das kann unendlich lange dauern!
     \item $\lnot(\sigma U\psi)$: es muss ab einem bestimmtem Zeitpunkt $\lnot\psi$ gelten -- via Definition der Übergangsfunktion $\rho$
 \end{itemize}
@@ -98,7 +101,7 @@ Alternierender Büchi-Automat $A_\varphi = (\Sigma, S, s^0, \rho, F)$:
         \end{split}
         \end{equation*}
     \end{block}
-
+    \pause
     \begin{itemize}
     \setlength\itemsep{1em}
         \item Es gilt also $\lnot\psi$ ab dem Zeitpunkt, an dem ein unendlicher Ast mit $\lnot(\sigma U\psi)$ beschriftet ist -- und somit gilt auch $\lnot(\sigma U\psi)$.
@@ -108,19 +111,20 @@ Alternierender Büchi-Automat $A_\varphi = (\Sigma, S, s^0, \rho, F)$:
 
 \subsection{Zusammenfassung}
 \begin{frame}{\insertsubsection}
-\begin{block}{Verfahren Überblick}
-    \begin{itemize}
-        \setlength\itemsep{0.7em}
-        \item wir kennen nun Konstruktionsregeln für LTL $\rightarrow$ alternierender Büchi-Automat
-        \item $L_\omega(A_\varphi):$ Menge aller Berechnungen, die $\varphi$ erfüllen
-        \item \textit{Mapping} von LTL Formel zu Automat
-    \end{itemize}
-\end{block}
-\begin{block}{Was nun?}
-    \begin{itemize}
-        \setlength\itemsep{0.7em}
-        \item Eigenschaften von LTL Formeln via automatentheoretische Mittel
-        \item Dazu: \textit{normale} Büchi-Automaten verwenden
-    \end{itemize}
-\end{block}
+    \begin{block}{Verfahren Überblick}
+        \begin{itemize}
+            \setlength\itemsep{0.7em}
+            \item wir kennen nun Konstruktionsregeln für LTL $\rightarrow$ alternierender Büchi-Automat
+            \item $L_\omega(A_\varphi):$ Menge aller Berechnungen, die $\varphi$ erfüllen
+            \item \textit{Mapping} von LTL Formel zu Automat
+        \end{itemize}
+    \end{block}
+    \pause
+    \begin{block}{Was nun?}
+        \begin{itemize}
+            \setlength\itemsep{0.7em}
+            \item Eigenschaften von LTL Formeln via automatentheoretische Mittel
+            \item Dazu: \textit{normale} Büchi-Automaten verwenden
+        \end{itemize}
+    \end{block}
 \end{frame}
